@@ -18,6 +18,23 @@ body {
 }
 
 main {
+    width: 30%;   
+
+}
+
+#keyBoard button {
+    border: black solid 2px;
+    padding: 5rem;
+    display: inline-blockˀ;
+    background-color: white;
+    border-radius: 1rem;
+    margin: 0.2rem;
+    font-size: x-large;
+
+}
+
+#clear {
+    width: 100%;
 
 }
 

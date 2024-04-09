@@ -25,9 +25,29 @@ function buttonClick(e) {
     // kollar om siffertangent är nedtryckt
     if (btn.substring(0, 1) === 'b') {
         let digit = btn.substring(1, 2); // plockar ut siffran från id:et
-
-    } else { // Inte en siffertangent, övriga tangenter.
-
+        addDigit(digit);
+    } 
+    // Inte en siffertangent, övriga tangenter.
+    else if (btn === 'add') { 
+        setOperator('add');
+    } 
+    else if (btn === 'sub') {
+        setOperator('sub');
+    } 
+    else if (btn === 'mul') {
+        setOperator('mul');
+    }
+    else if (btn === 'div') {
+        setOperator('div');
+    }
+    else if (btn === 'comma') {
+        addComma();
+    }
+    else if (btn === 'enter') {
+        calculate();
+    }
+    else if (btn === 'clear') {
+        memClear();
     }
 }
 
@@ -35,12 +55,19 @@ function buttonClick(e) {
  *  Lägger till siffra på display.
  */
 function addDigit(digit) {
+    lcd.value = lcd.value + digit;
+    memory = lcd.value;
 }
 
 /**
  * Lägger till decimaltecken
  */
 function addComma() {
+    if (lcd.value includes ('.')) {
+
+        
+    } 
+    
 
 }
 
