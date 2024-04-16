@@ -6,7 +6,7 @@
 
 let lcd = null; // displayen
 
-let memory = 0; // Lagrat/gamlat värdet från display
+let memory = 0; // Lagrat/gammalt värdet från display
 let arithmetic = null; // Vilken beräkning som skall göras +,-, x eller /
 
 function init() {
@@ -41,7 +41,7 @@ function buttonClick(e) {
         setOperator('div');
     }
     else if (btn === 'comma') {
-        addComma();
+        addComma('comma');
     }
     else if (btn === 'enter') {
         calculate();
@@ -62,11 +62,16 @@ function addDigit(digit) {
 /**
  * Lägger till decimaltecken
  */
-function addComma() {
-    if (lcd.value includes ('.')) {
+function addComma(comma) {
+    if (lcd.value.includes ('.')) {
+        console.log("komma finns")
 
-        
     } 
+    else {
+      lcd.value = lcd.value + '.';
+
+
+    }
     
 
 }
