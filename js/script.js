@@ -8,6 +8,7 @@ let lcd = null; // displayen
 
 let memory = 0; // Lagrat/gammalt värdet från display
 let arithmetic = null; // Vilken beräkning som skall göras +,-, x eller /
+let isComma = false;
 
 function init() {
     lcd = document.getElementById('lcd');
@@ -56,23 +57,19 @@ function buttonClick(e) {
  */
 function addDigit(digit) {
     lcd.value = lcd.value + digit;
-    memory = lcd.value;
 }
 
 /**
  * Lägger till decimaltecken
  */
 function addComma(comma) {
-    if (lcd.value.includes ('.')) {
-        console.log("komma finns")
-
-    } 
-    else {
-      lcd.value = lcd.value + '.';
-
-
+    if(isComma === false) {
+        lcd.value = lcd.value + '.';
+        isComma = true;
     }
-    
+    else {
+        console.log("komma finns")
+    }
 
 }
 
@@ -81,13 +78,39 @@ function addComma(comma) {
  * +, -, *, /
  */
 function setOperator(operator){
+    memory = lcd.value;
+    if(operator === 'add') {
+        arithmetic = '+';
+    }
+    else if(operator === 'sub'){
+        arithmetic = '-';
+    }
+    else if(operator === 'mul') {
+        arithmetic = '*';
+    }
+    else if(operator === 'div') {
+        arithmetic = '/';
+    }
 
+    clearLCD(); 
 }
 
 /**
  * Beräknar ovh visar resultatet på displayen.
  */
 function calculate() {
+    if(arithmetic === '+') {
+        lcd.value = +memory + +lcd.value;
+    }
+    else if(arithmetic === '-') {
+        lcd.value = memory - lcd.value;
+    }
+    else if(arithmetic === '*') {
+        lcd.value = memory * lcd.value;
+    }
+    else if(arithmetic === '/') {
+        lcd.value = memory / lcd.value;
+    }
 
 }
 
@@ -103,5 +126,6 @@ function memClear(){
     arithmetic = null;
     clearLCD();
 }
+
 
 window.onload = init;
