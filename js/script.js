@@ -10,6 +10,7 @@ let memory = 0; // Lagrat/gammalt värdet från display
 let arithmetic = null; // Vilken beräkning som skall göras +,-, x eller /
 let isComma = false;
 
+
 function init() {
     lcd = document.getElementById('lcd');
     let keyBoard = document.getElementById('keyBoard')
@@ -101,17 +102,31 @@ function setOperator(operator){
 function calculate() {
     if(arithmetic === '+') {
         lcd.value = +memory + +lcd.value;
+        lcd.value = roundIt(lcd.value);
+
     }
     else if(arithmetic === '-') {
         lcd.value = memory - lcd.value;
+        lcd.value = roundIt(lcd.value);
+
     }
     else if(arithmetic === '*') {
         lcd.value = memory * lcd.value;
+        lcd.value = roundIt(lcd.value);
+
     }
     else if(arithmetic === '/') {
         lcd.value = memory / lcd.value;
+        lcd.value = roundIt(lcd.value);
+
     }
 
+}
+
+/* En fix för Floatpoint excpetion */
+function roundIt(tempVal) {
+    tempVal = Math.round(tempVal * 1e14) / 1e14;
+    return tempVal;
 }
 
 /** Rensar display */
